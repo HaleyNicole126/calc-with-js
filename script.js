@@ -13,6 +13,7 @@ class Calculator {
     }
 
     delete() {
+        this.currentOperand = this.currentOperand.toString().slice(0, -1)
 
     }
 
@@ -54,6 +55,9 @@ class Calculator {
             default:
                 return
         }
+        this.currentOperand = computation
+        this.operation = undefined
+        this.previousOperand = ''
     }
 
     updateDisplay() {
@@ -90,5 +94,15 @@ operationButtons.forEach(button => {
 
 equalsButton.addEventListener('click', button => {
     calculator.compute()
+    calculator.updateDisplay()
+})
+
+allClearButton.addEventListener('click', button => {
+    calculator.clear()
+    calculator.updateDisplay()
+})
+
+deleteButton.addEventListener('click', button => {
+    calculator.delete()
     calculator.updateDisplay()
 })
